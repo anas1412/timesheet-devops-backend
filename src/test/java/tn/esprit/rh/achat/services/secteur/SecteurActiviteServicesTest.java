@@ -47,8 +47,8 @@ public class SecteurActiviteServicesTest {
 	 @Test
 	 @Order(4)
 	 public void testDeleteSecteur() {
-	 s.deleteSecteurActivite(4L);
-	 assertNull(s.retrieveSecteurActivite(4L));
+	 s.deleteSecteurActivite(5L);
+	 assertNull(s.retrieveSecteurActivite(5L));
 	 }
 	
 	 
