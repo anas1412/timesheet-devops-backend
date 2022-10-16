@@ -18,12 +18,7 @@ public class FactureServiceTest {
     @Autowired
     IFactureService fs;
 
-    @Test
-    @Order(1)
-    public void testRetrieveAllFactures() {
-        List<Facture> listFactures = fs.retrieveAllFactures();
-        Assertions.assertEquals(0, listFactures.size());
-    }
+   
 
 
 }

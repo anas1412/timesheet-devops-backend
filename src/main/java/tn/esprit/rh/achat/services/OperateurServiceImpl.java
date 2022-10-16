@@ -12,6 +12,7 @@ public class OperateurServiceImpl implements IOperateurService {
 
 	@Autowired
 	OperateurRepository operateurRepository;
+	
 	@Override
 	public List<Operateur> retrieveAllOperateurs() {
 		return (List<Operateur>) operateurRepository.findAll();
@@ -40,5 +41,8 @@ public class OperateurServiceImpl implements IOperateurService {
 		Operateur operateur = operateurRepository.findById(id).orElse(null);
 		return operateur;
 	}
+	
+	
+	
 
 }
