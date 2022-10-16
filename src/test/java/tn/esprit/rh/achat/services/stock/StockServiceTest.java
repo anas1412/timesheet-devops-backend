@@ -27,7 +27,7 @@ import java.util.Optional;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class UserServiceImplMock {
+public class StockServiceTest {
 	
 	@Mock
 	StockRepository stockRepository;
