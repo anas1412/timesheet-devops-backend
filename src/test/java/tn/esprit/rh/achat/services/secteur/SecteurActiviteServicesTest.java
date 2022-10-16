@@ -44,6 +44,7 @@ public class SecteurActiviteServicesTest {
 	 SecteurActivite secteur = s.retrieveSecteurActivite(3L);
 	 assertEquals(3L, secteur.getIdSecteurActivite().longValue());
 	 }
+	 
 	 @Test
 	 @Order(4)
 	 public void testDeleteSecteur() {
