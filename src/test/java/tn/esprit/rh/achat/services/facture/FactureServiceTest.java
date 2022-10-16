@@ -2,7 +2,10 @@ package tn.esprit.rh.achat.services.facture;
 
 import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -26,6 +29,7 @@ import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(MockitoExtension.class)
 public class FactureServiceTest {
 	
@@ -41,6 +45,7 @@ public class FactureServiceTest {
 	}
 	
 	@Test
+	@Order(1)
 	public void testRetrieveFacture() {
 		
 	Facture facture = new Facture(1L, 100, 500, null, null, null, null, null, null);
@@ -58,6 +63,7 @@ public class FactureServiceTest {
 	
 	
 	@Test
+	@Order(2)
 	public void createFactureTest()
 	{
 
@@ -73,6 +79,7 @@ public class FactureServiceTest {
 	
 	
 	@Test
+	@Order(3)
 	public void getAllFactureTest()
 	{
 		List<Facture> Facturelist = new ArrayList<Facture>() {
