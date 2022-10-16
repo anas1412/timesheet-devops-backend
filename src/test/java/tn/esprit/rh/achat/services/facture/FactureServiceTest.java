@@ -28,21 +28,22 @@ public class FactureServiceTest {
         List<Facture> listFactures = fs.retrieveAllFactures();
         Assertions.assertEquals(0, listFactures.size());
     }
-
+    
     @Test
     @Order(2)
-    public void testRetrieveFacture() {
-    Facture facture = fs.retrieveFacture(2L);
-    assertEquals(2L, facture.getIdFacture().longValue());
+    public void testCreateStock() {
+        Facture savedfacture = fs.addFacture(new Facture(1L, 100, 500, null, null, null, null, null, null)); 
+        assertThat(savedfacture.getIdFacture()).isGreaterThan(0); 
     }
-
 
     @Test
     @Order(3)
-    public void testCancelFacture() {
-    fs.cancelFacture(1L);
-    assertNull(fs.retrieveFacture(1L));
+    public void testRetrieveFacture() {
+    	Facture facture = fs.retrieveFacture(1L);
+    	assertEquals(1L, facture.getIdFacture().longValue());
     }
+    
+
 
 
 }
