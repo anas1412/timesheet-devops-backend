@@ -1,4 +1,4 @@
-package tn.esprit.rh.achat.services.categorieproduit;
+/*package tn.esprit.rh.achat.services.categorieproduit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -55,4 +55,4 @@ public class CategorieProduitServiceTest {
 	
 		
 		
-}
+}*/
