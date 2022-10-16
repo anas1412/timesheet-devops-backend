@@ -27,7 +27,7 @@ import java.util.Optional;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class StockServiceMock {
+public class UserServiceImplMock {
 	
 	@Mock
 	StockRepository stockRepository;
@@ -106,7 +106,6 @@ public class StockServiceMock {
 	System.out.println(stock1);
 	System.out.println(" Delete is working correctly...!!");  
 	}
-	
 	
 	
 	
