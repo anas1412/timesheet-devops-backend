@@ -9,6 +9,10 @@ import tn.esprit.rh.achat.entities.Produit;
 import tn.esprit.rh.achat.services.IFactureService;
 import tn.esprit.rh.achat.services.IProduitService;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import java.util.List;
 
 @SpringBootTest
@@ -23,6 +27,21 @@ public class FactureServiceTest {
     public void testRetrieveAllFactures() {
         List<Facture> listFactures = fs.retrieveAllFactures();
         Assertions.assertEquals(0, listFactures.size());
+    }
+
+    @Test
+    @Order(2)
+    public void testRetrieveFacture() {
+    Facture facture = fs.retrieveFacture(2L);
+    assertEquals(2L, facture.getIdFacture().longValue());
+    }
+
+
+    @Test
+    @Order(3)
+    public void testCancelFacture() {
+    fs.cancelFacture(1L);
+    assertNull(fs.retrieveFacture(1L));
     }
 
 
