@@ -1,12 +1,13 @@
 package tn.esprit.rh.achat.services.facture;
 
+import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -33,6 +34,11 @@ public class FactureServiceTest {
 	
 	@InjectMocks
 	FactureServiceImpl factureService;
+	
+	@Before(value = "")
+	public void init() {
+		MockitoAnnotations.openMocks(this);
+	}
 	
 	@Test
 	public void testRetrieveFacture() {
