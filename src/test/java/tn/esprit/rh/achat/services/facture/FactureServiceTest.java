@@ -26,7 +26,7 @@ import java.util.Optional;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class FactureServiceMock {
+public class FactureServiceTest {
 	
 	@Mock
 	FactureRepository factureRepository;
