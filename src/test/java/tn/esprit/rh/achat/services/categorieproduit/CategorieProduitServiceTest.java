@@ -1,58 +1,102 @@
-/*package tn.esprit.rh.achat.services.categorieproduit;
+package tn.esprit.rh.achat.services.categorieproduit;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import tn.esprit.rh.achat.entities.CategorieProduit;
-import tn.esprit.rh.achat.services.ICategorieProduitService;
-
+import tn.esprit.rh.achat.repositories.CategorieProduitRepository;
+import tn.esprit.rh.achat.services.CategorieProduitServiceImpl;
 
 @SpringBootTest
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestMethodOrder(OrderAnnotation.class)
+@ExtendWith(MockitoExtension.class)
 public class CategorieProduitServiceTest {
 	
-	@Autowired
-	ICategorieProduitService cps;
+	@Mock
+	CategorieProduitRepository categorieRepository;
+	
+	@InjectMocks
+	CategorieProduitServiceImpl categorieService;
+	
 	
 	@Test
-    @Order(1)
-	 public void testRetrieveAllCategoriesProduits() {
-	        List<CategorieProduit> listReglements = cps.retrieveAllCategorieProduits();
-	        Assertions.assertEquals(0, listReglements.size());
-	    }
-	
-	@Test
- 	@Order(2)
- 	public void addCategorieProduit() {
-     CategorieProduit savedcategoriesproduit = cps.addCategorieProduit(new CategorieProduit(null,"xyz","xyz"));
-     assertThat(savedcategoriesproduit.getIdCategorieProduit()).isGreaterThan(0);
- 	}
-
-	@Test
-	@Order(3)
 	public void testRetrieveCategorieProduit() {
-	CategorieProduit categorieProduit = cps.retrieveCategorieProduit(7L);
-	assertEquals(7L, categorieProduit.getIdCategorieProduit().longValue());
+		
+		CategorieProduit categorie = new CategorieProduit(null,"xyz","xyz");
+		categorie.setidCategorieProduit(1L);
+		
+	Mockito.when(categorieRepository.findById(1L)).thenReturn(Optional.of(categorie));
+	categorieService.retrieveCategorieProduit(1L);
+	Assertions.assertNotNull(categorie);
+	
+	System.out.println(categorie); 
+	System.out.println(" Retrieve is working correctly...!!");  
+	
 	}
 	
 	@Test
-	@Order(4)
-	public void testDeleteCategorieProduit() {
-	cps.deleteCategorieProduit(13L);
-	assertNull(cps.retrieveCategorieProduit(13L));
+	public void createCategorieProduitTest()
+	{
+
+		CategorieProduit categorie2 = new CategorieProduit(null,"abcd", "abcd");
+		categorie2.setidCategorieProduit(2L);
+		
+		categorieService.addCategorieProduit(categorie2);
+		verify(categorieRepository, times(1)).save(categorie2);
+		System.out.println(categorie2); 
+		System.out.println(" Create is working correctly...!!");  
 	}
 	
-		
-		
-}*/
+	@Test
+	public void getAllCategorieProduitTest()
+	{
+		List<CategorieProduit> Catprodlist = new ArrayList<CategorieProduit>() {
+
+			{
+		add(new CategorieProduit(null,"qwerty","qwerty"));
+		add(new CategorieProduit(null,"aqw","aqw"));
+		add(new CategorieProduit(null,"azerty","azerty"));
+			}};
+			
+			
+		when(categorieService.retrieveAllCategorieProduits()).thenReturn(Catprodlist);
+		//test
+		List<CategorieProduit> catList = categorieService.retrieveAllCategorieProduits();
+		assertEquals(3,catList.size());
+		System.out.println(" Retrieve all is working correctly...!!");  
+	
+	}
+	
+	@Test
+	public void TestDeleteCategorieProduit(){
+
+	CategorieProduit categorie1 = new CategorieProduit(null,"az","az");
+	categorie1.setidCategorieProduit(7L);
+	
+	Mockito.lenient().when(categorieRepository.findById(categorie1.getIdCategorieProduit())).thenReturn(Optional.of(categorie1));
+
+	categorieService.deleteCategorieProduit(7L);
+	verify(categorieRepository).deleteById(categorie1.getIdCategorieProduit());
+	
+	System.out.println(categorie1);
+	System.out.println(" Delete is working correctly...!!");  
+	}
+
+}
