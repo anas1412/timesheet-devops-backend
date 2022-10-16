@@ -1,106 +1,49 @@
 package tn.esprit.rh.achat.services.facture;
 
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import tn.esprit.rh.achat.entities.Facture;
-import tn.esprit.rh.achat.repositories.FactureRepository;
-import tn.esprit.rh.achat.services.FactureServiceImpl;
+import tn.esprit.rh.achat.entities.Produit;
+import tn.esprit.rh.achat.services.IFactureService;
+import tn.esprit.rh.achat.services.IProduitService;
 
-
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ExtendWith(MockitoExtension.class)
 public class FactureServiceTest {
-	
-	@Mock
-	FactureRepository factureRepository;
-	
-	@InjectMocks
-	FactureServiceImpl factureService;
-	
-	@Before(value = "")
-	public void init() {
-		MockitoAnnotations.openMocks(this);
-	}
-	
-	@Test
-	@Order(1)
-	public void testRetrieveFacture() {
-		
-	Facture facture = new Facture(1L, 100, 500, null, null, null, null, null, null);
 
-	facture.setIdFacture(1L);
-		
-	Mockito.when(factureRepository.findById(1L)).thenReturn(Optional.of(facture));
-	factureService.retrieveFacture(1L);
-	Assertions.assertNotNull(facture);
-	
-	System.out.println(facture); 
-	System.out.println(" Retrieve is working correctly...!!");  
-	
-	}
-	
-	
-	@Test
-	@Order(2)
-	public void createFactureTest()
-	{
+    @Autowired
+    IFactureService fs;
 
-		Facture facture2 = new Facture(2L, 100, 500, null, null, null, null, null, null);
-		facture2.setIdFacture(2L);
-		
-		factureService.addFacture(facture2);
-		verify(factureRepository, times(1)).save(facture2);
-		System.out.println(facture2); 
-		System.out.println(" Create is working correctly...!!");  
-	}
-	
-	
-	
-	@Test
-	@Order(3)
-	public void getAllFactureTest()
-	{
-		List<Facture> Facturelist = new ArrayList<Facture>() {
+    @Test
+    @Order(1)
+    public void testRetrieveAllFactures() {
+        List<Facture> listFactures = fs.retrieveAllFactures();
+        Assertions.assertEquals(0, listFactures.size());
+    }
+    
+    @Test
+    @Order(2)
+    public void testCreateStock() {
+        Facture savedfacture = fs.addFacture(new Facture(1L, 100, 500, null, null, null, null, null, null)); 
+        assertThat(savedfacture.getIdFacture()).isGreaterThan(0); 
+    }
 
-			{
-		add(new Facture(3L, 100, 700, null, null, null, null, null, null));
-		add(new Facture(4L, 200, 800, null, null, null, null, null, null));
-		add(new Facture(5L, 300, 900, null, null, null, null, null, null));
-			}};
-			
-			
-		when(factureService.retrieveAllFactures()).thenReturn(Facturelist);
-		//test
-		List<Facture> factureList = factureService.retrieveAllFactures();
-		assertEquals(3, factureList.size());
-		System.out.println(" Retrieve all is working correctly...!!");  
-	
-	}
-	
+    @Test
+    @Order(3)
+    public void testRetrieveFacture() {
+    	Facture facture = fs.retrieveFacture(1L);
+    	assertEquals(1L, facture.getIdFacture().longValue());
+    }
+    
 
-	
-	
+
 
 }
