@@ -58,7 +58,6 @@ public class ProduitServiceTest {
    
     
     @Test 
-	@Order(1)
     public void retrieveAllProduitsTest() {
     	when(pr.findAll()).thenReturn(Stream
     			.of(p1,p2)
@@ -69,7 +68,6 @@ public class ProduitServiceTest {
     
     
     @Test
-	@Order(2)
 	public void addProduitTest() {
     	when(pr.save(p1)).thenReturn(p1);
     	assertNotNull(p1);
@@ -78,7 +76,6 @@ public class ProduitServiceTest {
 	}
 
 @Test
-@Order(3)
 public void DeleteProduitTest() {
 	pr.save(p1);
 	ps.deleteProduit(p1.getIdProduit());
@@ -88,7 +85,6 @@ public void DeleteProduitTest() {
 }
 
 @Test
-@Order(4)
 public void retrieveProduitTest() {
 	when(pr.findById(p1.getIdProduit())).thenReturn(Optional.of(p1));
 	assertEquals(p1, ps.retrieveProduit(p1.getIdProduit()));
@@ -97,7 +93,6 @@ public void retrieveProduitTest() {
 
 
 @Test 
-@Order(5)
 public void UpdatePorduitTest() {
 	when(pr.save(p1)).thenReturn(p1);
 	assertNotNull(p1);
