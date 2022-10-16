@@ -52,7 +52,7 @@ public class FactureServiceMock {
 	
 	
 	@Test
-	public void createStockTest()
+	public void createFactureTest()
 	{
 
 		Facture facture2 = new Facture(2L, 100, 500, null, null, null, null, null, null);
