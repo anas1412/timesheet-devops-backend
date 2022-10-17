@@ -112,8 +112,7 @@ public class SecteurActiviteTest {
 	
 	System.out.println(secteur1);
 	System.out.println(" Delete is working correctly...!!");  
-	System.out.println(" Delete is working...!!");
-	}
+		}
 	
 	
 	
