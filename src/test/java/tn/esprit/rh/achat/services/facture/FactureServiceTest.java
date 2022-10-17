@@ -83,7 +83,6 @@ public class FactureServiceTest {
 		List<Facture> factureList = factureService.retrieveAllFactures();
 		assertEquals(3, factureList.size());
 		System.out.println(" Retrieve all is working correctly...!!");  
-	
 	}
 	
 
