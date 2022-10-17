@@ -64,7 +64,6 @@ public class FactureServiceTest {
 	}
 	
 	
-	
 	@Test
 	public void getAllFactureTest()
 	{
