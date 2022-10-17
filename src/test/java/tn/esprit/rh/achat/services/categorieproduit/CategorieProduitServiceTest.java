@@ -67,6 +67,7 @@ public class CategorieProduitServiceTest {
 	@Test
 	public void getAllCategorieProduitTest()
 	{
+		@SuppressWarnings("serial")
 		List<CategorieProduit> Catprodlist = new ArrayList<CategorieProduit>() {
 
 			{
