@@ -36,6 +36,7 @@ import java.util.stream.Stream;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(MockitoExtension.class)
 public class StockServiceTest {
+
 	
 
 @MockBean
