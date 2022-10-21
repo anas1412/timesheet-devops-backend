@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Optional;
 
 
-
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
 public class SecteurActiviteTest {
@@ -67,7 +66,7 @@ public class SecteurActiviteTest {
 		SecteurService.addSecteurActivite(secteur2);
 		verify(SecteurRepository, times(1)).save(secteur2);
 		System.out.println(secteur2); 
-		System.out.println(" Create is working correctly...!!");  
+		System.out.println(" Create is working...!!");  
 	}
 	
 	
