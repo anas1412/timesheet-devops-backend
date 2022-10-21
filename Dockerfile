@@ -1,4 +1,4 @@
-FROM openjdk:11.0.6-jre
+FROM maslick/minimalka:jdk11
 ADD target/achat.jar achat.jar
-EXPOSE 9090
+EXPOSE 8080
 CMD ["java", "-jar", "/achat.jar"]
