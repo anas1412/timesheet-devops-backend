@@ -1,4 +1,4 @@
 FROM openjdk:8-jre-alpine
-ADD target/app-achat.jar app-achat.jar
+ADD target/app-achat-1.0.jar app-achat-1.0.jar
 EXPOSE 8089
-CMD ["java", "-jar", "/app-achat.jar"]
+CMD ["java", "-jar", "/app-achat-1.0.jar"]
