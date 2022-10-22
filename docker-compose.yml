@@ -9,7 +9,7 @@ services:
     volumes:
       - /home/mysql/data:/var/lib/mysql
   spring_app:
-    image: achref98/app-achat:latest
+    image: achref98/app:latest
     container_name: achatproject
     restart: on-failure
     ports:
