@@ -13,7 +13,6 @@ services:
     container_name: achatproject
     restart: on-failure
     ports:
-      - 8089:8089
+      - 9090:9090
     depends_on:
       - mysqldb
-    
