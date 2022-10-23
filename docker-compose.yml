@@ -14,7 +14,7 @@ services:
      - /home/mysql/data:/var/lib/mysql --user 1000
 
   spring_app:
-   image: wael22122212/achatapp:latest
+   image: achatapp
    container_name: achatprojet
    restart: on-failure
    ports:
