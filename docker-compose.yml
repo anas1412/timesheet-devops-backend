@@ -26,9 +26,11 @@ services:
      - mysqldb
 
   angular_app:
-    image: anas1412/achatfront:1.0
+    image: anas1412/achatfront:test
     container_name: achatangular
     restart: on-failure
+    environment:
+     - api_url:'http://spring_app:8089/SpringMVC/'
     ports:
      - 4200:80
     depends_on:
