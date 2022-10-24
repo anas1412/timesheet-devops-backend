@@ -15,7 +15,7 @@ services:
      - /home/vagrant/mysql/data:/var/lib/mysql
 
   spring_app:
-    image: anas1412/achat:3.0
+    image: anas1412/achat:1.0
     container_name: achatspring
     restart: on-failure
     environment:
@@ -26,7 +26,7 @@ services:
      - mysqldb
 
   angular_app:
-    image: anas1412/achatfront:2.0
+    image: anas1412/achatfront:1.0
     container_name: achatangular
     restart: on-failure
     ports:
